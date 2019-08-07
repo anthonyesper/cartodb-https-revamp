@@ -156,8 +156,9 @@ RUN cd / && \
     cd ..
 
 # Initialize template postgis db
-RUN chmod 775 -R /tmp
+
 ADD ./template_postgis.sh /tmp/template_postgis.sh
+RUN chmod +x /tmp/template_postgis.sh
 RUN service postgresql start && /bin/su postgres -c \
       /tmp/template_postgis.sh && service postgresql stop
 

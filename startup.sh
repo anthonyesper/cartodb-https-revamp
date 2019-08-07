@@ -33,3 +33,6 @@ bundle exec rake carto:api_key:create_default
 
 # bundle exec rake carto:api_key:create_default
 bundle exec thin start --threaded -p 3000 --threadpool-size 5
+
+#Start Nginx 
+service nginx start

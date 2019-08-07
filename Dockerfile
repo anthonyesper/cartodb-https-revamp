@@ -254,8 +254,9 @@ RUN apt-get install iotop -q -y
 RUN apt-get install ioping -q -y
 
 #Update Domain Names Inside Confs
-RUN sed -i 's/sample.domain.com/'"$FQDN"'/g' /cartodb/config/app_config.yml
-RUN sed -i 's/sample.domain.com/'"$FQDN"'/g' /Windshaft-cartodb/config/environments/production.js
+RUN sed -i 's/sub.domain.com/'"$FQDN"'/g' /cartodb/config/app_config.yml
+RUN sed -i 's/sub.domain.com/'"$FQDN"'/g' /Windshaft-cartodb/config/environments/production.js
+
 
 EXPOSE 3000 8080 8181
 

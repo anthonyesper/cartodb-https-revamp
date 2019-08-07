@@ -159,7 +159,7 @@ RUN cd / && \
 
 ADD ./template_postgis.sh 
 /template_postgis.sh
-RUN chmod +x /tmp/template_postgis.sh
+RUN chmod +x /tmp/*
 RUN service postgresql start && /bin/su postgres -c \
       /tmp/template_postgis.sh && service postgresql stop
 
@@ -180,7 +180,6 @@ RUN git clone git://github.com/CartoDB/Windshaft-cartodb.git && \
     mkdir logs
 
 # Install CartoDB
-RUN chmod +x /tmp/*
 RUN git clone --recursive git://github.com/CartoDB/cartodb.git && \
     cd cartodb && \
     git checkout $CARTODB_VERSION && \

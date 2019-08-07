@@ -32,7 +32,6 @@ ENV DATAERVICESAPI_VERSION=master
 ENV OBSERVATORY_VERSION=master
 ENV RAILS_ENV=production
 
-ARG FQDN
 
 RUN useradd -m -d /home/cartodb -s /bin/bash cartodb && \
   apt-get install -y -q \

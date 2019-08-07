@@ -157,13 +157,11 @@ RUN cd / && \
 
 # Initialize template postgis db
 
-ADD ./template_postgis.sh 
-/template_postgis.sh
+ADD ./template_postgis.sh /tmp/template_postgis.sh
+ADD ./cartodb_pgsql.sh /tmp/cartodb_pgsql.sh
 RUN chmod +x /tmp/*
 RUN service postgresql start && /bin/su postgres -c \
       /tmp/template_postgis.sh && service postgresql stop
-
-ADD ./cartodb_pgsql.sh /tmp/cartodb_pgsql.sh
 
 # Install CartoDB API
 RUN git clone git://github.com/CartoDB/CartoDB-SQL-API.git && \

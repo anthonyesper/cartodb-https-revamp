@@ -32,6 +32,7 @@ ENV DATAERVICESAPI_VERSION=master
 ENV OBSERVATORY_VERSION=master
 ENV RAILS_ENV=production
 
+ARG FQDN
 
 RUN useradd -m -d /home/cartodb -s /bin/bash cartodb && \
   apt-get install -y -q \
@@ -155,6 +156,7 @@ RUN cd / && \
     cd ..
 
 # Initialize template postgis db
+RUN chmod 775 -R /tmp
 ADD ./template_postgis.sh /tmp/template_postgis.sh
 RUN service postgresql start && /bin/su postgres -c \
       /tmp/template_postgis.sh && service postgresql stop

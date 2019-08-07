@@ -32,6 +32,7 @@ ENV DATAERVICESAPI_VERSION=master
 ENV OBSERVATORY_VERSION=master
 ENV RAILS_ENV=production
 
+ARG FQDN
 
 RUN useradd -m -d /home/cartodb -s /bin/bash cartodb && \
   apt-get install -y -q \
@@ -249,6 +250,12 @@ RUN mkdir -p /cartodb/log && touch /cartodb/log/users_modifications && \
     chmod +x /cartodb/script/sync_tables_trigger.sh
 
 RUN apt-get update && apt -q -y install nano 
+RUN apt-get install iotop -q -y
+RUN apt-get install ioping -q -y
+
+#Update Domain Names Inside Confs
+RUN sed -i 's/sample.domain.com/'"$FQDN"'/g' /cartodb/config/app_config.yml
+RUN sed -i 's/sample.domain.com/'"$FQDN"'/g' /Windshaft-cartodb/config/environments/production.js
 
 EXPOSE 3000 8080 8181
 
